@@ -1,3 +1,14 @@
+
+//
+// //
+// localStorage.removeItem("allProducts");
+// console.log(localStorage.getItem('allProducts[10].views'));
+  function clearButton(){
+  localStorage.removeItem("allProducts");
+
+};
+
+
 var shown = [];
 shownCounter = 0;
 var m =shown[0];
@@ -173,9 +184,6 @@ console.log(allProducts[i].tally);
 }
 
 
-
-
-
   pickedB.unshift(document.getElementsByTagName('input')[1].src);
   console.log(document.getElementsByTagName('input')[1].src.substring(44));
 
@@ -331,19 +339,29 @@ function invisible(){
 var button = document.getElementById('button');
 button.hidden= true;
 
-
 };
 
-invisible();
+function invisible2(){
+  var rebutton = document.getElementById('rebutton');
+  rebutton.hidden= true;
+  console.log("hey again");
+}
 
-// function things(){
-//   console.log('done');
-// }
+function invisible3(){
+  var clearButton = document.getElementById('clearButton');
+clearButton.hidden = true;
+
+}
+
+invisible();
+invisible2();
+invisible3();
+
 
 
 function render(){
-   genGraph();
-
+  //  genGraph();
+var mesa = document.getElementsByTagName('span')[0];
  var tbl = document.createElement('table');
  var trElone = document.createElement('tr');
  var thElone = document.createElement('th');
@@ -380,12 +398,15 @@ for (var i = 0; i<allProducts.length; i++) {
  trEltwo.appendChild(tdEltwo);
 
  tbl.appendChild(trEltwo);
+ rebutton();
+ visible3();
 
 
- // genGraph();
+
+ genGraph();
 }
 
-var mesa = document.getElementsByTagName('span')[0];
+// var mesa = document.getElementsByTagName('span')[0];
 mesa.appendChild(tbl);
 };
 
@@ -400,9 +421,23 @@ mesa.appendChild(tbl);
 
       };
 
+      function visible3(){
+      var clearButton = document.getElementById('clearButton');
+      clearButton.hidden= false;
+      console.log("hey hey agains");
+
+
+      };
+
     function checkCount(){
     console.log(shownCounter + "pics shown");
     if(shownCounter % 48 === 0){
+
+  localStorage.setItem('allProducts', JSON.stringify(allProducts));
+  var restoredVotes2 = JSON.parse(localStorage.getItem('allProducts'));
+  console.table(allProducts);
+  console.log(allProducts);
+    ////
       visible();
       // userTallies.unshift(allProducts[i]);
       console.log(userTallies);
@@ -411,6 +446,8 @@ mesa.appendChild(tbl);
       // render();
     }
     };
+
+
 
 
 
@@ -428,7 +465,7 @@ mesa.appendChild(tbl);
     },
 
     {
-      fillColor : "rgba(73,188,170,0.4)",
+      fillColor : "rgb(255, 255, 255)",
       strokeColor : "rgba(72,174,209,0.4)",
       // data : [364,504,605,400,345,320]
     }
@@ -468,3 +505,51 @@ var mm =[];
     var genGraph= document.getElementById("results").getContext("2d");
     new Chart(genGraph).Bar(barData);
 };
+
+
+function clearButton2(){
+  clearButton();
+
+  for (var i = 0; i<productNames.length; i++){
+    allProducts[i].tally = 0;
+    allProducts[i].views = 0;
+    console.log(allProducts[i].views);
+
+}
+
+
+  rollRemove();
+  invisible3();
+}
+
+function rebutton(){
+
+var rebutton = document.getElementById('rebutton');
+rebutton.hidden= false;
+
+};
+
+
+function rollRemove(){
+  removeTable();
+  invisible();
+  invisible2();
+  invisible3();
+
+  removr();
+  removr();
+  removr();
+  roll();
+  roll();
+  roll();
+  equalityCheck();
+};
+
+
+
+function removeTable(){
+
+    var removeMesa= document.getElementsByTagName('table')[0];
+     removeMesa.remove(0);
+
+  };
